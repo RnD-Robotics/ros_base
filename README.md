@@ -6,8 +6,9 @@
 docker build -t rdrobotics/ros2:latest .
 ```
 
-## test
+## Usage
+
 ```bash
-docker run --net host rdrobotics/ros2:latest bash
+docker run -it rdrobotics/ros2:latest
 # some ros-command
 ```

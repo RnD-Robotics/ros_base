@@ -3,7 +3,7 @@ ARG UBUNTU_VERSION=20230605
 
 FROM ubuntu:jammy-${UBUNTU_VERSION}
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 ENV ROS_DISTRO humble
 

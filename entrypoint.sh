@@ -19,18 +19,6 @@ if [ "$USER" != "root" ]; then
 fi
 
 
-# Supervisor
-CONF_PATH=/etc/supervisor/conf.d/supervisord.conf
-cat << EOF > $CONF_PATH
-[supervisord]
-nodaemon=true
-user=root
-[program:vnc]
-command=gosu '$USER' bash '$VNCRUN_PATH'
-[program:novnc]
-command=gosu '$USER' bash -c "websockify --web=/usr/lib/novnc 80 localhost:5901"
-EOF
-
 # colcon
 BASHRC_PATH=$HOME/.bashrc
 grep -F "source /opt/ros/$ROS_DISTRO/setup.bash" $BASHRC_PATH || echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> $BASHRC_PATH
@@ -45,4 +33,5 @@ chown -R $USER:$USER $HOME/.ros
 # clearup
 PASSWORD=
 
-exec /bin/tini -- supervisord -n -c /etc/supervisor/supervisord.conf
+# TODO: https://docs.docker.com/config/containers/multi-service_container/
+bash
